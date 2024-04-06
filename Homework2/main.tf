@@ -12,9 +12,17 @@ resource "aws_s3_bucket" "bn2" {
   bucket_prefix = "kaizen-"
   force_destroy = true
 }
+
 # Importing S3 bucket manually 
 # terraform import aws_s3_bucket.bucket kaizenkaizen1122
 # terraform import aws_s3_bucket.bucket kaizenkaizen112233
+resource "aws_s3_bucket" "bucket" {
+  # (resource arguments)
+}
+resource "aws_s3_bucket" "bucket1" {
+  # (resource arguments)
+}
+
 
 # Creating users
 resource "aws_iam_user" "us" {
