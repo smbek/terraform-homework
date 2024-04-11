@@ -1,6 +1,6 @@
 # Creating key pair
 resource "aws_key_pair" "deployer" {
-  key_name   = "my_key"
+  key_name   = var.key_name
   public_key = file("~/.ssh/id_rsa.pub")
 
 }
