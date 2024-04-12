@@ -41,10 +41,9 @@ variable "ins_count" {
   type        = number
 }
 
-variable "ports" {
-  description = "Provided ports "
-  default     = []
+variable ports {
   type        = list(number)
+  default     = [22, 80, 443]
 }
 variable "key_name" {
   description = "The name for the key pair. Conflicts with `key_name_prefix`"

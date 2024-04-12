@@ -1,27 +1,35 @@
 
 resource "aws_security_group" "allow_tls" {
   name        = "allow_tls"
-  description = "security group"
+  description = "Allow TLS inbound traffic"
 
-  dynamic "ingress" {
-    for_each = var.ingress_rules
-    content {
-      description = lookup(ingress.value, "description", null)
-      from_port   = lookup(ingress.value, "from_port", null)
-      to_port     = lookup(ingress.value, "to_port", null)
-      protocol    = lookup(ingress.value, "protocol", null)
-      cidr_blocks = lookup(ingress.value, "cidr_blocks", null)
-    }
+ ingress {  # inbound rules incoming traffic
+    description      = "provide port 22"
+    from_port        = var.ports[0]
+    to_port          = var.ports[0]
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
+  ingress {  # inbound rules incoming traffic
+    description      = "provide port 80"
+    from_port        = var.ports[1]
+    to_port          = var.ports[1]
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
   }
 
+  ingress {  # inbound rules incoming traffic
+    description      = "provide port 443"
+    from_port        = var.ports[2]
+    to_port          = var.ports[2]
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
   egress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-
-  tags = {
-    Name = "allow_tls"
-  }
 }
+
