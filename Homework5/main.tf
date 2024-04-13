@@ -34,7 +34,6 @@ resource "aws_subnet" "public2" {
 }
 resource "aws_subnet" "private1" {
   vpc_id                  = aws_vpc.kaizen.id
-  map_public_ip_on_launch = true
   availability_zone       = "${var.availability_zones}c"
   cidr_block              = var.sub_cidr[2].cidr
 
@@ -44,7 +43,6 @@ resource "aws_subnet" "private1" {
 }
 resource "aws_subnet" "private2" {
   vpc_id                  = aws_vpc.kaizen.id
-  map_public_ip_on_launch = true
   availability_zone       = "${var.availability_zones}d"
   cidr_block              = var.sub_cidr[3].cidr
 
